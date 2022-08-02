@@ -7,12 +7,16 @@ import Search from './components/Search';
 
 function App() {
   const [foods, setFoods] = useState(foodData)
+  const [hideForm, setHideForm] = useState(false)
+
+
 
   const handleSearch = (searchValue) => {
     if (searchValue === '') {
       setFoods(foodData)
     } else {
       const filtered = foods.filter(el => el.name.toLowerCase().includes((searchValue).toLowerCase()))
+
       setFoods(filtered)
     }
   }
@@ -29,6 +33,7 @@ function App() {
     })
     setFoods(filteredFood)
   }
+
   return (
     <div className="App">
       <h1>Food List</h1>
@@ -36,9 +41,12 @@ function App() {
         <Search onSearch={handleSearch} />
       </div>
       <div>
-        <AddFoodForm newFood={handleNewFood} />
+
+        {hideForm && <AddFoodForm newFood={handleNewFood} />}
+        <button onClick={() => setHideForm(prev => !prev)}>{!hideForm ? 'Add New Food' : 'Hide Form'}</button>
       </div>
       <div className='main-content-box'>
+        {foods.length === 0 && (<div><p> <strong>Oops! There is no more content to show </strong> </p> <img src='./nothingIcon.png' width='200px' /> </div>)}
         {foods.map(el => {
           return <FoodBox onDelete={handleDelete} food={{ name: el.name, calories: el.calories, image: el.image, servings: el.servings }} />
         })}

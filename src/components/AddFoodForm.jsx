@@ -24,6 +24,7 @@ export default function (props) {
     }
     return (
         <form action="" onSubmit={handleForm}>
+            <h2>Add Food Entry</h2>
             <div>
                 <label htmlFor="name">Name</label>
                 <input type="text" id='name' value={name} onChange={(e) => { setName(e.target.value) }} />
