@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default function foodBox(props) {
-    const { food } = props
-    console.log(food)
+    const { food, onDelete } = props
     return (
         <div className='each-food-box'>
             <div className='food-name-box'>
@@ -12,7 +11,7 @@ export default function foodBox(props) {
             <p>Calories: {food.calories}</p>
             <p>Servings: {food.servings}</p>
             <p> <strong>Total Calories: {food.calories} kcal</strong></p>
-            <button>Delete</button>
+            <button onClick={() => onDelete(food.name)}>Delete</button>
         </div >
     )
 }
