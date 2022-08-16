@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function (props) {
+export default function AddFoodForm(props) {
     const { newFood } = props
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
